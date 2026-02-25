@@ -1,0 +1,1840 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="theme-color" content="#FFD700" />
+  <title>Uptome-Marketing & Advertising Agency</title>
+  <meta name="description" content="Uptome helps brands grow with advertising, creative content, social media marketing, and performance campaigns." />
+
+  <!-- Fonts (optional) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+
+  <style>
+    :root{
+      /* Brand */
+      --brand:#FFD700;          /* Uptome yellow */
+      --ink:#0b0d10;            /* near black */
+      --bg:#07090c;
+      --card:#0e1116;
+      --card2:#0b0f14;
+      --line:rgba(255,255,255,.10);
+      --muted:rgba(255,255,255,.70);
+
+      /* Accents from your post styles */
+      --orange:#ff7a18;
+      --purple:#7c3aed;
+      --green:#22c55e;
+      --red:#ef4444;
+      --blue:#3b82f6;
+
+      --radius:22px;
+      --shadow: 0 18px 60px rgba(0,0,0,.55);
+      --shadow2: 0 10px 35px rgba(0,0,0,.45);
+
+      --max:1180px;
+    }
+
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{
+      margin:0;
+      font-family:Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      color:#fff;
+      background:
+        radial-gradient(900px 500px at 10% 10%, rgba(255,215,0,.14), transparent 55%),
+        radial-gradient(900px 500px at 90% 30%, rgba(124,58,237,.12), transparent 55%),
+        radial-gradient(800px 500px at 20% 90%, rgba(34,197,94,.10), transparent 55%),
+        linear-gradient(180deg, var(--bg), #05070a);
+      overflow-x:hidden;
+    }
+
+    a{color:inherit; text-decoration:none}
+    img{max-width:100%; display:block}
+    .container{max-width:var(--max); margin:0 auto; padding:0 18px}
+
+    /* Top bar */
+    .topbar{
+      position:sticky;
+      top:0;
+      z-index:999;
+      backdrop-filter: blur(14px);
+      background: rgba(7,9,12,.55);
+      border-bottom:1px solid var(--line);
+    }
+    .nav{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      padding:12px 0;
+      gap:12px;
+    }
+    .brand{
+      display:flex;
+      align-items:center;
+      gap:12px;
+      min-width:220px;
+    }
+    .brand .logo{
+      width:42px; height:42px;
+      border-radius:14px;
+      background: rgba(255,215,0,.10);
+      border:1px solid rgba(255,215,0,.25);
+      display:grid; place-items:center;
+      overflow:hidden;
+      box-shadow: var(--shadow2);
+    }
+    .brand .logo img{width:100%; height:100%; object-fit:cover}
+    .brand .txt{
+      display:flex; flex-direction:column; line-height:1.05
+    }
+    .brand .txt b{font-size:14px; letter-spacing:.2px}
+    .brand .txt span{font-size:12px; color:var(--muted)}
+    .navlinks{
+      display:flex;
+      align-items:center;
+      gap:18px;
+      flex-wrap:wrap;
+      justify-content:center;
+    }
+    .navlinks a{
+      font-size:13px;
+      color:rgba(255,255,255,.86);
+      padding:10px 10px;
+      border-radius:12px;
+      transition:.2s;
+    }
+    .navlinks a:hover{background:rgba(255,255,255,.06)}
+    .navlinks a.active{
+      background: rgba(255,215,0,.12);
+      border:1px solid rgba(255,215,0,.25);
+      color:#fff;
+    }
+    .navActions{
+      display:flex;
+      align-items:center;
+      gap:10px;
+      min-width:220px;
+      justify-content:flex-end;
+    }
+
+    .btn{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      gap:10px;
+      padding:12px 14px;
+      border-radius:14px;
+      border:1px solid var(--line);
+      background: rgba(255,255,255,.06);
+      color:#fff;
+      font-weight:700;
+      font-size:13px;
+      transition:.2s;
+      cursor:pointer;
+      user-select:none;
+      white-space:nowrap;
+    }
+    .btn:hover{transform: translateY(-1px); background: rgba(255,255,255,.085)}
+    .btn.primary{
+      background: linear-gradient(135deg, var(--brand), #ffe37a);
+      color:#111;
+      border: 1px solid rgba(255,215,0,.55);
+      box-shadow: 0 12px 40px rgba(255,215,0,.18);
+    }
+    .btn.primary:hover{filter:saturate(1.05)}
+    .btn.ghost{background:transparent}
+    .btn.icon{
+      width:44px; height:44px; padding:0;
+      border-radius:14px;
+    }
+
+    .burger{display:none}
+    @media (max-width: 980px){
+      .navlinks{display:none}
+      .burger{display:inline-flex}
+    }
+
+    /* Mobile drawer */
+    .drawerOverlay{
+      position:fixed; inset:0;
+      background:rgba(0,0,0,.55);
+      display:none;
+      z-index:1200;
+    }
+    .drawer{
+      position:fixed;
+      top:0; right:0;
+      width:min(360px, 88vw);
+      height:100vh;
+      background: rgba(10,12,16,.92);
+      border-left:1px solid var(--line);
+      box-shadow: var(--shadow);
+      padding:16px;
+      transform: translateX(110%);
+      transition: .25s ease;
+      z-index:1300;
+      backdrop-filter: blur(14px);
+    }
+    .drawerHeader{
+      display:flex; align-items:center; justify-content:space-between;
+      padding:6px 2px 14px;
+      border-bottom:1px solid var(--line);
+      margin-bottom:12px;
+    }
+    .drawerLinks a{
+      display:flex;
+      padding:12px 12px;
+      border-radius:14px;
+      border:1px solid transparent;
+      color:rgba(255,255,255,.9);
+    }
+    .drawerLinks a:hover{
+      background:rgba(255,255,255,.06);
+      border-color: rgba(255,255,255,.08);
+    }
+    .drawerFooter{
+      margin-top:12px;
+      display:grid;
+      gap:10px;
+    }
+    .drawerOpen .drawerOverlay{display:block}
+    .drawerOpen .drawer{transform: translateX(0)}
+
+    /* Hero */
+    .hero{
+      padding:54px 0 22px;
+      position:relative;
+    }
+    .heroGrid{
+      display:grid;
+      grid-template-columns: 1.25fr .95fr;
+      gap:18px;
+      align-items:stretch;
+    }
+    @media (max-width: 980px){
+      .heroGrid{grid-template-columns:1fr}
+    }
+
+    .heroCard{
+      border-radius: var(--radius);
+      background:
+        linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.03)),
+        radial-gradient(900px 400px at 20% 20%, rgba(255,215,0,.18), transparent 50%),
+        radial-gradient(700px 380px at 90% 30%, rgba(124,58,237,.12), transparent 55%);
+      border:1px solid var(--line);
+      box-shadow: var(--shadow);
+      padding:26px;
+      position:relative;
+      overflow:hidden;
+      min-height: 420px;
+    }
+    .badgeRow{display:flex; gap:10px; flex-wrap:wrap; align-items:center}
+    .badge{
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      padding:8px 10px;
+      border-radius:999px;
+      border:1px solid rgba(255,255,255,.12);
+      background: rgba(255,255,255,.06);
+      color:rgba(255,255,255,.9);
+      font-size:12px;
+      font-weight:700;
+    }
+    .badge .dot{
+      width:8px; height:8px;
+      border-radius:99px;
+      background: var(--brand);
+      box-shadow: 0 0 0 3px rgba(255,215,0,.14);
+    }
+    .heroTitle{
+      margin:14px 0 10px;
+      font-size: clamp(30px, 4.2vw, 54px);
+      line-height:1.02;
+      letter-spacing:-.9px;
+    }
+    .heroTitle .hl{
+      background: linear-gradient(135deg, var(--brand), #fff);
+      -webkit-background-clip:text;
+      background-clip:text;
+      color:transparent;
+    }
+    .heroP{
+      margin:0;
+      color:rgba(255,255,255,.78);
+      font-size:15px;
+      line-height:1.65;
+      max-width: 62ch;
+    }
+    .heroCTA{
+      display:flex;
+      gap:12px;
+      flex-wrap:wrap;
+      margin-top:18px;
+      align-items:center;
+    }
+    .miniStats{
+      display:grid;
+      grid-template-columns: repeat(3, minmax(0,1fr));
+      gap:10px;
+      margin-top:20px;
+    }
+    @media (max-width: 560px){
+      .miniStats{grid-template-columns:1fr}
+    }
+    .stat{
+      border:1px solid rgba(255,255,255,.10);
+      background: rgba(0,0,0,.22);
+      border-radius: 18px;
+      padding:14px;
+    }
+    .stat b{display:block; font-size:18px}
+    .stat span{display:block; margin-top:6px; color:var(--muted); font-size:12px; line-height:1.4}
+
+    /* Hero side card */
+    .heroSide{
+      border-radius: var(--radius);
+      background: linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.02));
+      border:1px solid var(--line);
+      box-shadow: var(--shadow2);
+      padding:18px;
+      overflow:hidden;
+      display:flex;
+      flex-direction:column;
+      gap:12px;
+      min-height: 420px;
+    }
+
+    .socialProof{
+      border-radius: 18px;
+      border:1px solid rgba(255,255,255,.10);
+      background: rgba(0,0,0,.22);
+      padding:14px;
+      display:grid;
+      gap:10px;
+    }
+    .proofRow{display:flex; align-items:center; justify-content:space-between; gap:10px}
+    .pill{
+      font-size:12px;
+      font-weight:800;
+      padding:8px 10px;
+      border-radius: 999px;
+      border:1px solid rgba(255,215,0,.28);
+      background: rgba(255,215,0,.12);
+    }
+    .checkList{
+      margin:0;
+      padding:0;
+      list-style:none;
+      display:grid;
+      gap:10px;
+    }
+    .checkList li{
+      display:flex;
+      align-items:flex-start;
+      gap:10px;
+      color:rgba(255,255,255,.85);
+      font-size:13px;
+      line-height:1.55;
+    }
+    .check{
+      width:20px; height:20px;
+      border-radius:8px;
+      background: rgba(34,197,94,.16);
+      border:1px solid rgba(34,197,94,.35);
+      display:grid; place-items:center;
+      flex: 0 0 auto;
+      margin-top:2px;
+    }
+    .check svg{width:14px; height:14px}
+
+    .posterGrid{
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap:10px;
+      margin-top:auto;
+    }
+    .poster{
+      border-radius: 18px;
+      overflow:hidden;
+      border:1px solid rgba(255,255,255,.10);
+      background: rgba(255,255,255,.05);
+      aspect-ratio: 1/1;
+      position:relative;
+    }
+    .poster img{
+      width:100%;
+      height:100%;
+      object-fit:cover;
+      transform: scale(1.04);
+      transition: .35s ease;
+      filter: contrast(1.02) saturate(1.02);
+    }
+    .poster:hover img{transform: scale(1.10)}
+    .poster::after{
+      content:"";
+      position:absolute; inset:0;
+      background: linear-gradient(180deg, transparent, rgba(0,0,0,.35));
+      pointer-events:none;
+    }
+
+    /* Sections */
+    section{padding: 46px 0}
+    .sectionHead{
+      display:flex;
+      align-items:flex-end;
+      justify-content:space-between;
+      gap:14px;
+      margin-bottom:14px;
+    }
+    .kicker{
+      display:inline-flex;
+      gap:10px;
+      align-items:center;
+      color:rgba(255,255,255,.86);
+      font-weight:800;
+      letter-spacing:.18em;
+      text-transform:uppercase;
+      font-size:11px;
+    }
+    .kicker .line{
+      width:44px; height:1px; background: rgba(255,255,255,.25);
+    }
+    h2{
+      margin:8px 0 0;
+      font-size: clamp(22px, 3.2vw, 34px);
+      letter-spacing:-.5px;
+      line-height:1.12;
+    }
+    .sub{
+      margin:0;
+      color:var(--muted);
+      font-size:13px;
+      line-height:1.6;
+      max-width: 68ch;
+    }
+
+    .grid3{
+      display:grid;
+      grid-template-columns: repeat(3, minmax(0,1fr));
+      gap:14px;
+    }
+
+
+
+
+
+
+
+    
+    @media (max-width: 980px){.grid3{grid-template-columns:1fr}}
+    .card{
+      border-radius: var(--radius);
+      border:1px solid rgba(255,255,255,.10);
+      background: linear-gradient(180deg, rgba(255,255,255,.05), rgba(0,0,0,.18));
+      box-shadow: var(--shadow2);
+      padding:18px;
+      overflow:hidden;
+      position:relative;
+    }
+    .card h3{
+      margin:10px 0 8px;
+      font-size:16px;
+      letter-spacing:-.2px;
+    }
+    .card p{
+      margin:0;
+      color:rgba(255,255,255,.76);
+      font-size:13px;
+      line-height:1.65;
+    }
+    .iconBox{
+      width:48px; height:48px;
+      border-radius:18px;
+      display:grid; place-items:center;
+      border:1px solid rgba(255,255,255,.10);
+      background: rgba(255,255,255,.06);
+    }
+    .iconBox svg{width:22px; height:22px}
+
+    /* About layout */
+    .aboutWrap{
+      display:grid;
+      grid-template-columns: 1.1fr .9fr;
+      gap:14px;
+      align-items:stretch;
+    }
+    @media (max-width: 980px){.aboutWrap{grid-template-columns:1fr}}
+    .aboutPoints{
+      margin:14px 0 0;
+      padding:0;
+      list-style:none;
+      display:grid;
+      gap:10px;
+    }
+    .aboutPoints li{
+      display:flex;
+      gap:10px;
+      align-items:flex-start;
+      color:rgba(255,255,255,.85);
+      font-size:13px;
+      line-height:1.6;
+    }
+    .spark{
+      width:22px; height:22px;
+      border-radius:10px;
+      display:grid; place-items:center;
+      background: rgba(255,215,0,.12);
+      border:1px solid rgba(255,215,0,.26);
+      flex:0 0 auto;
+      margin-top:2px;
+    }
+    .spark svg{width:14px; height:14px}
+
+    .aboutMeta{
+      display:grid;
+      gap:12px;
+    }
+    .metaCard{
+      border-radius: var(--radius);
+      border:1px solid rgba(255,255,255,.10);
+      background: rgba(0,0,0,.22);
+      padding:16px;
+    }
+    .metaRow{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:10px;
+      padding:10px 0;
+      border-bottom:1px solid rgba(255,255,255,.08);
+    }
+    .metaRow:last-child{border-bottom:0}
+    .metaRow span{color:var(--muted); font-size:12px}
+    .metaRow b{font-size:13px}
+
+    /* Pricing */
+    .toggleRow{
+      display:flex; align-items:center; gap:10px;
+      justify-content:flex-end;
+      flex-wrap:wrap;
+    }
+    .toggle{
+      display:inline-flex; align-items:center; gap:10px;
+      padding:10px 12px;
+      border-radius: 999px;
+      border:1px solid rgba(255,255,255,.12);
+      background: rgba(255,255,255,.06);
+      font-size:12px;
+      color:rgba(255,255,255,.85);
+      font-weight:800;
+    }
+    .switch{
+      width:50px; height:28px;
+      border-radius:999px;
+      background: rgba(255,255,255,.10);
+      border:1px solid rgba(255,255,255,.12);
+      position:relative;
+      cursor:pointer;
+    }
+    .knob{
+      position:absolute;
+      top:3px; left:3px;
+      width:22px; height:22px;
+      border-radius:999px;
+      background: #fff;
+      transition:.2s;
+    }
+    .switch.on{
+      background: rgba(255,215,0,.18);
+      border-color: rgba(255,215,0,.30);
+    }
+    .switch.on .knob{left:25px; background: var(--brand)}
+    .price{
+      font-size:30px;
+      letter-spacing:-.6px;
+      margin:10px 0 6px;
+    }
+    .price small{font-size:12px; color:var(--muted); font-weight:700}
+    .features{
+      margin:10px 0 14px;
+      padding:0;
+      list-style:none;
+      display:grid;
+      gap:10px;
+    }
+    .features li{
+      display:flex;
+      gap:10px;
+      color:rgba(255,255,255,.82);
+      font-size:13px;
+      line-height:1.5;
+    }
+    .chip{
+      display:inline-flex; align-items:center; gap:8px;
+      padding:8px 10px;
+      border-radius:999px;
+      border:1px solid rgba(255,255,255,.12);
+      background: rgba(255,255,255,.05);
+      font-size:12px;
+      font-weight:800;
+      color:rgba(255,255,255,.86);
+      width:max-content;
+    }
+
+    /* Work gallery */
+    .workToolbar{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:10px;
+      flex-wrap:wrap;
+      margin-bottom:12px;
+    }
+    .filters{
+      display:flex;
+      gap:10px;
+      flex-wrap:wrap;
+    }
+    .filterBtn{
+      padding:10px 12px;
+      border-radius:999px;
+      border:1px solid rgba(255,255,255,.12);
+      background: rgba(255,255,255,.06);
+      color:rgba(255,255,255,.86);
+      font-weight:800;
+      font-size:12px;
+      cursor:pointer;
+      transition:.2s;
+    }
+    .filterBtn:hover{transform: translateY(-1px)}
+    .filterBtn.active{
+      background: rgba(255,215,0,.14);
+      border-color: rgba(255,215,0,.28);
+      color:#fff;
+    }
+    .search{
+      display:flex; align-items:center; gap:10px;
+      padding:10px 12px;
+      border-radius: 999px;
+      border:1px solid rgba(255,255,255,.12);
+      background: rgba(0,0,0,.18);
+      min-width: min(420px, 100%);
+    }
+    .search input{
+      width:100%;
+      border:0;
+      outline:0;
+      background: transparent;
+      color:#fff;
+      font-weight:700;
+      font-size:12px;
+    }
+    .gallery{
+      display:grid;
+      grid-template-columns: repeat(4, minmax(0,1fr));
+      gap:12px;
+    }
+    @media (max-width: 1100px){.gallery{grid-template-columns: repeat(3, 1fr)}}
+    @media (max-width: 780px){.gallery{grid-template-columns: repeat(2, 1fr)}}
+    @media (max-width: 480px){.gallery{grid-template-columns: 1fr}}
+    .workItem{
+      border-radius: 18px;
+      overflow:hidden;
+      border:1px solid rgba(255,255,255,.10);
+      background: rgba(255,255,255,.04);
+      position:relative;
+      cursor:pointer;
+      aspect-ratio: 1/1;
+    }
+    .workItem img{
+      width:100%;
+      height:100%;
+      object-fit:cover;
+      transform: scale(1.02);
+      transition: .35s ease;
+    }
+    .workItem:hover img{transform: scale(1.10)}
+    .workItem .tag{
+      position:absolute;
+      top:10px; left:10px;
+      padding:8px 10px;
+      border-radius:999px;
+      font-size:11px;
+      font-weight:900;
+      border:1px solid rgba(255,255,255,.14);
+      background: rgba(0,0,0,.35);
+      backdrop-filter: blur(10px);
+    }
+    .workItem .cap{
+      position:absolute; left:0; right:0; bottom:0;
+      padding:12px;
+      background: linear-gradient(180deg, transparent, rgba(0,0,0,.65));
+      color:#fff;
+    }
+    .cap b{display:block; font-size:13px; letter-spacing:-.2px}
+    .cap span{display:block; font-size:11px; color:rgba(255,255,255,.78); margin-top:2px}
+
+    /* Modal */
+    .modal{
+      position:fixed; inset:0;
+      display:none;
+      place-items:center;
+      background: rgba(0,0,0,.70);
+      z-index:2000;
+      padding:18px;
+    }
+    .modal.open{display:grid}
+    .modalCard{
+      width:min(980px, 100%);
+      border-radius: 26px;
+      border:1px solid rgba(255,255,255,.12);
+      background: rgba(10,12,16,.92);
+      box-shadow: var(--shadow);
+      overflow:hidden;
+      display:grid;
+      grid-template-columns: 1.15fr .85fr;
+    }
+    @media (max-width: 980px){.modalCard{grid-template-columns:1fr}}
+    .modalMedia{
+      background:#000;
+      min-height: 360px;
+    }
+    .modalMedia img{width:100%; height:100%; object-fit:cover}
+    .modalInfo{
+      padding:18px;
+      display:flex;
+      flex-direction:column;
+      gap:10px;
+    }
+    .modalInfo h3{margin:0; font-size:18px}
+    .modalInfo p{margin:0; color:rgba(255,255,255,.75); font-size:13px; line-height:1.65}
+    .modalClose{
+      position:absolute;
+      top:16px; right:16px;
+      width:44px; height:44px;
+      border-radius: 16px;
+      border:1px solid rgba(255,255,255,.14);
+      background: rgba(0,0,0,.35);
+      display:grid; place-items:center;
+      cursor:pointer;
+      backdrop-filter: blur(10px);
+    }
+
+    /* Skills */
+    .skillsGrid{
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap:14px;
+      align-items:stretch;
+    }
+    @media (max-width: 980px){.skillsGrid{grid-template-columns:1fr}}
+    .bar{
+      margin-top:10px;
+      height:12px;
+      border-radius:999px;
+      background: rgba(255,255,255,.08);
+      border:1px solid rgba(255,255,255,.10);
+      overflow:hidden;
+    }
+    .fill{
+      height:100%;
+      width:0%;
+      border-radius:999px;
+      background: linear-gradient(90deg, var(--brand), #ffffff);
+      transition: width 1.2s ease;
+    }
+    .skillRow{
+      display:flex; align-items:center; justify-content:space-between;
+      gap:10px;
+      color:rgba(255,255,255,.90);
+      font-weight:900;
+      font-size:12px;
+    }
+    .skillRow span{color:var(--muted); font-weight:800}
+
+    /* Contact */
+    .contactGrid{
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap:14px;
+    }
+    @media (max-width: 980px){.contactGrid{grid-template-columns:1fr}}
+    .contactItem{
+      display:flex; gap:12px; align-items:flex-start;
+      padding:14px;
+      border-radius: 18px;
+      border:1px solid rgba(255,255,255,.10);
+      background: rgba(0,0,0,.20);
+    }
+    .contactItem b{display:block; font-size:13px}
+    .contactItem span{display:block; color:var(--muted); font-size:12px; margin-top:4px}
+    .form{
+      display:grid; gap:10px;
+      margin-top:10px;
+    }
+    .field{
+      border-radius: 16px;
+      border:1px solid rgba(255,255,255,.12);
+      background: rgba(255,255,255,.06);
+      padding:12px 12px;
+      color:#fff;
+      outline:none;
+      font-weight:700;
+      font-size:13px;
+    }
+    textarea.field{min-height:120px; resize:vertical}
+    .note{font-size:12px; color:var(--muted); line-height:1.5}
+    .toast{
+      position:fixed;
+      bottom:18px; left:50%;
+      transform:translateX(-50%);
+      background: rgba(0,0,0,.75);
+      border:1px solid rgba(255,255,255,.12);
+      color:#fff;
+      padding:12px 14px;
+      border-radius: 999px;
+      box-shadow: var(--shadow2);
+      display:none;
+      z-index:3000;
+      font-weight:800;
+      font-size:12px;
+    }
+    .toast.show{display:block}
+
+    /* Reveal on scroll */
+    .reveal{opacity:0; transform: translateY(14px); transition: .6s ease}
+    .reveal.show{opacity:1; transform: translateY(0)}
+
+    footer{
+      border-top:1px solid var(--line);
+      padding:20px 0;
+      color:rgba(255,255,255,.72);
+      font-size:12px;
+    }
+    .footerRow{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:10px;
+      flex-wrap:wrap;
+    }
+    .footerRow b{color:#fff}
+  </style>
+</head>
+
+<body>
+  <!-- Mobile Drawer -->
+  <div class="drawerOverlay" id="drawerOverlay" aria-hidden="true"></div>
+  <aside class="drawer" id="drawer" aria-hidden="true" aria-label="Mobile menu">
+    <div class="drawerHeader">
+      <div class="brand">
+        <div class="logo">
+          <!-- Put your logo here -->
+          <img src="assets/uptome-logo.jpg" alt="Uptome logo">
+        </div>
+        <div class="txt">
+          <b>UPTOME</b>
+          <span>Boosting your presence</span>
+        </div>
+      </div>
+      <button class="btn icon" id="closeDrawer" aria-label="Close menu">
+        <svg viewBox="0 0 24 24" fill="none">
+          <path d="M6 6l12 12M18 6L6 18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+        </svg>
+      </button>
+    </div>
+
+    <nav class="drawerLinks">
+      <a href="#about" class="drawerLink">About</a>
+      <a href="#services" class="drawerLink">Services</a>
+      <a href="#packages" class="drawerLink">Packages</a>
+      <a href="#work" class="drawerLink">Work</a>
+      <a href="#skills" class="drawerLink">Skills</a>
+      <a href="#contact" class="drawerLink">Contact</a>
+    </nav>
+
+    <div class="drawerFooter">
+      <a class="btn primary" href="#contact">Get a Free Consultation</a>
+      <a class="btn" href="https://wa.me/94743252376?text=Hello%20Uptome!%20I%20need%20marketing%20support." target="_blank" rel="noopener">
+        WhatsApp Now
+      </a>
+    </div>
+  </aside>
+
+  <!-- Navbar -->
+  <header class="topbar">
+    <div class="container">
+      <div class="nav">
+        <a class="brand" href="#home" aria-label="Go to home">
+          <div class="logo">
+            <!-- Put your logo here -->
+            <img src="assets/uptome-logo.jpg" alt="Uptome logo">
+          </div>
+          <div class="txt">
+            <b>UPTOME</b>
+            <span>Boosting your presence, growing your value</span>
+          </div>
+        </a>
+
+        <nav class="navlinks" aria-label="Primary navigation">
+          <a href="#about">About</a>
+          <a href="#services">Services</a>
+          <a href="#packages">Packages</a>
+          <a href="#work">Work</a>
+          <a href="#skills">Skills</a>
+          <a href="#contact">Contact</a>
+        </nav>
+
+        <div class="navActions">
+          <a class="btn ghost" href="mailto:uptome.hire@gmail.com">Email</a>
+          <a class="btn primary" href="#contact">Contact Us</a>
+          <button class="btn icon burger" id="openDrawer" aria-label="Open menu">
+            <svg viewBox="0 0 24 24" fill="none">
+              <path d="M4 7h16M4 12h16M4 17h16" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+            </svg>
+          </button>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Hero -->
+  <main id="home" class="hero">
+    <div class="container">
+      <div class="heroGrid">
+        <div class="heroCard reveal">
+          <div class="badgeRow">
+            <span class="badge"><span class="dot"></span> Advertising • Marketing • Creative Studio</span>
+            <span class="badge">🇱🇰 Sri Lanka</span>
+            <span class="badge">Fast Turnaround</span>
+          </div>
+
+          <h1 class="heroTitle">
+            We build <span class="hl">attention grabbing</span> campaigns that convert.
+          </h1>
+
+          <p class="heroP">
+            Uptome is a marketing & advertising agency focused on creative design, social media growth,
+            and performance campaigns. We help businesses look premium, reach the right audience, and
+            generate real results.
+          </p>
+
+          <div class="heroCTA">
+            <a class="btn primary" href="#packages">
+              View Packages
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
+                <path d="M5 12h12M13 6l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </a>
+            <a class="btn" href="https://wa.me/94743252376?text=Hello%20Uptome!%20I%20need%20marketing%20support." target="_blank" rel="noopener">
+              WhatsApp
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
+                <path d="M20 11.5a8.5 8.5 0 0 1-12.7 7.4L4 20l1.2-3.1A8.5 8.5 0 1 1 20 11.5Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </a>
+            <a class="btn ghost" href="#work">See Our Work</a>
+          </div>
+
+          <div class="miniStats">
+            <div class="stat">
+              <b>Creative + Strategy</b>
+              <span>Design, copy & campaign planning that fits your business.</span>
+            </div>
+            <div class="stat">
+              <b>Performance Ads</b>
+              <span>Meta/IG campaigns with targeting, testing and reporting.</span>
+            </div>
+            <div class="stat">
+              <b>Brand Growth</b>
+              <span>Content systems that improve engagement and trust.</span>
+            </div>
+          </div>
+        </div>
+
+        <aside class="heroSide reveal">
+          <div class="socialProof">
+            <div class="proofRow">
+              <div>
+                <b style="font-size:14px; letter-spacing:-.2px">What we deliver</b>
+                <div style="color:var(--muted); font-size:12px; margin-top:4px">Clean creatives • Strong CTAs • Measurable results</div>
+              </div>
+              <span class="pill">Uptome</span>
+            </div>
+            <ul class="checkList">
+              <li>
+                <span class="check">
+                  <svg viewBox="0 0 24 24" fill="none">
+                    <path d="M20 6L9 17l-5-5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                </span>
+                Social media marketing (posts, reels ideas, page growth)
+              </li>
+              <li>
+                <span class="check">
+                  <svg viewBox="0 0 24 24" fill="none">
+                    <path d="M20 6L9 17l-5-5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                </span>
+                Ad campaigns (leads, messages, sales, traffic)
+              </li>
+              <li>
+                <span class="check">
+                  <svg viewBox="0 0 24 24" fill="none">
+                    <path d="M20 6L9 17l-5-5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                </span>
+                Tourism / business promotions + review strategy (Tripadvisor / Booking)
+              </li>
+            </ul>
+          </div>
+
+          <!-- Put 4 sample works/posters here -->
+          <div class="posterGrid" aria-label="Sample poster gallery">
+            <a class="poster" href="#work" title="View work">
+              <img src="assets/1.jpg" alt="Uptome sample work 1">
+            </a>
+            <a class="poster" href="#work" title="View work">
+              <img src="assets/2.jpg" alt="Uptome sample work 2">
+            </a>
+            <a class="poster" href="#work" title="View work">
+              <img src="assets/3.jpg" alt="Uptome sample work 3">
+            </a>
+            <a class="poster" href="#work" title="View work">
+              <img src="assets/4.jpg" alt="Uptome sample work 4">
+            </a>
+          </div>
+        </aside>
+      </div>
+    </div>
+  </main>
+
+  <!-- About -->
+  <section id="about">
+    <div class="container">
+      <div class="sectionHead">
+        <div>
+          <div class="kicker"><span class="line"></span> About Uptome</div>
+          <h2>Who we are & what we do</h2>
+          <p class="sub">
+            Uptome is a creative marketing agency helping businesses grow with strong design, smart strategy,
+            and consistent execution. We focus on making your brand look premium and perform better online.
+          </p>
+        </div>
+      </div>
+
+      <div class="aboutWrap">
+        <div class="card reveal">
+          <div class="iconBox">
+            <svg viewBox="0 0 24 24" fill="none">
+              <path d="M12 2l3 7 7 3-7 3-3 7-3-7-7-3 7-3 3-7Z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
+            </svg>
+          </div>
+          <h3>Our approach</h3>
+          <p>
+            We combine creative visuals + clear messaging + performance marketing. Whether you need content,
+            ads, or full account handling we plan, design, publish, optimize and report.
+          </p>
+
+          <ul class="aboutPoints">
+            <li>
+              <span class="spark">
+                <svg viewBox="0 0 24 24" fill="none">
+                  <path d="M12 20V4m0 0l-5 5m5-5l5 5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </span>
+              Boost visibility with consistent, high-quality creatives and brand design.
+            </li>
+            <li>
+              <span class="spark">
+                <svg viewBox="0 0 24 24" fill="none">
+                  <path d="M4 13l6 6L20 5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </span>
+              Run targeted ad campaigns to get leads, messages and sales.
+            </li>
+            <li>
+              <span class="spark">
+                <svg viewBox="0 0 24 24" fill="none">
+                  <path d="M4 19h16M6 15l4-4 3 3 5-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </span>
+              Track performance with analytics + clear monthly reporting.
+            </li>
+          </ul>
+        </div>
+
+        <div class="aboutMeta reveal">
+          <div class="metaCard">
+            <div class="metaRow"><span>Agency</span><b>Uptome</b></div>
+            <div class="metaRow"><span>Focus</span><b>Advertising + Social Media + Creatives</b></div>
+            <div class="metaRow"><span>Typical clients</span><b>Tourism • Shops • Services • Startups</b></div>
+            <div class="metaRow"><span>Delivery</span><b>Fast designs + campaigns</b></div>
+          </div>
+
+          <div class="metaCard">
+            <div class="chip">✨ What makes us different</div>
+            <p style="margin:10px 0 0; color:rgba(255,255,255,.78); font-size:13px; line-height:1.65;">
+              We don’t just “post designs”. We plan content, build your brand identity, run ads,
+              and improve results with testing and reporting so your marketing becomes predictable.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Services -->
+  <section id="services">
+    <div class="container">
+      <div class="sectionHead">
+        <div>
+          <div class="kicker"><span class="line"></span> Services</div>
+          <h2>Everything you need to grow online</h2>
+          <p class="sub">Choose one service or get a full monthly package. We can handle end to end.</p>
+        </div>
+      </div>
+
+      <div class="grid3">
+        <div class="card reveal">
+          <div class="iconBox">
+            <svg viewBox="0 0 24 24" fill="none">
+              <path d="M4 7h16M4 12h10M4 17h16" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+            </svg>
+          </div>
+          <h3>Content Creation</h3>
+          <p>Post designs, banners, promo creatives, story templates and content planning.</p>
+        </div>
+
+        <div class="card reveal">
+          <div class="iconBox">
+            <svg viewBox="0 0 24 24" fill="none">
+              <path d="M12 3v18M3 12h18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+            </svg>
+          </div>
+          <h3>Social Media Marketing</h3>
+          <p>Page optimization, growth strategy, engagement, captions, hashtags and content schedule.</p>
+        </div>
+
+        <div class="card reveal">
+          <div class="iconBox">
+            <svg viewBox="0 0 24 24" fill="none">
+              <path d="M4 19V5m0 14h16M8 15l3-3 3 3 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
+          <h3>Ad Campaigns (Meta/IG)</h3>
+          <p>Leads, messages, traffic, sales campaigns with targeting, testing and optimization.</p>
+        </div>
+
+        <div class="card reveal">
+          <div class="iconBox">
+            <svg viewBox="0 0 24 24" fill="none">
+              <path d="M3 7h18v10H3zM7 7V5h10v2" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
+            </svg>
+          </div>
+          <h3>Account Management</h3>
+          <p>We manage content posting, messages plan, campaign monitoring and monthly reports.</p>
+        </div>
+
+        <div class="card reveal">
+          <div class="iconBox">
+            <svg viewBox="0 0 24 24" fill="none">
+              <path d="M4 4h16v16H4zM8 8h8M8 12h8M8 16h5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+            </svg>
+          </div>
+          <h3>Analytics & Reporting</h3>
+          <p>Performance tracking, insights, next-month plan, and improvement suggestions.</p>
+        </div>
+
+        <div class="card reveal">
+          <div class="iconBox">
+            <svg viewBox="0 0 24 24" fill="none">
+              <path d="M12 21s-7-4.35-7-11a7 7 0 0 1 14 0c0 6.65-7 11-7 11Z" stroke="currentColor" stroke-width="2"/>
+              <path d="M9.5 10.5l1.5 1.5 3.5-3.5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
+          <h3>Tourism / Reviews Strategy</h3>
+          <p>Tripadvisor / Booking.com review strategy + content to build trust & bookings.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+ <!-- Packages -->
+<section id="packages">
+  <div class="container">
+    <div class="sectionHead">
+      <div>
+        <div class="kicker"><span class="line"></span> Packages</div>
+        <h2>Tourism Platform Management Packages</h2>
+        <p class="sub">
+          Professional setup and 1-month management for tourism businesses.
+          Choose the package that fits your booking goals.
+        </p>
+      </div>
+    </div>
+
+    <div class="grid3">
+
+      <!-- STARTER -->
+      <div class="card reveal">
+        <span class="chip">Package 01 — Starter</span>
+        <div class="price">Rs. 45,000 <small>/ 1 Month</small></div>
+        <p>Account creation + 1 month basic management.</p>
+
+        <div class="chip" style="margin-top:10px;">Platforms Included</div>
+        <p style="margin-top:6px;">
+          Tripadvisor • GetYourGuide • Booking.com • Agoda • Airbnb • Expedia • Google Business Profile
+        </p>
+
+        <ul class="features">
+          <li><span class="check">✔</span> Account creation + basic setup</li>
+          <li><span class="check">✔</span> 1 month management (basic support)</li>
+          <li><span class="check">✔</span> Reply to platform inbox messages</li>
+          <li><span class="check">✔</span> Update contact details & business info</li>
+        </ul>
+
+        <a class="btn primary" href="#contact">Choose Starter</a>
+      </div>
+
+      <!-- STANDARD -->
+      <div class="card reveal" style="border-color: rgba(255,215,0,.35);">
+        <span class="chip" style="background: rgba(255,215,0,.12); border-color: rgba(255,215,0,.35);">
+          ⭐ Package 02 — Standard (Most Popular)
+        </span>
+        <div class="price">Rs. 60,000 <small>/ 1 Month</small></div>
+        <p>Full setup + active management for better bookings.</p>
+
+        <ul class="features">
+          <li><span class="check">✔</span> Everything in Starter</li>
+          <li><span class="check">✔</span> Full profile optimization</li>
+          <li><span class="check">✔</span> Add tours/listings (up to 3)</li>
+          <li><span class="check">✔</span> Pricing + pickup setup</li>
+          <li><span class="check">✔</span> 1 month active management</li>
+        </ul>
+
+        <div class="chip" style="margin-top:10px;">Management Includes</div>
+        <ul class="features">
+          <li><span class="check">✔</span> Customer message replies</li>
+          <li><span class="check">✔</span> Weekly updates & improvements</li>
+          <li><span class="check">✔</span> Basic review reply support</li>
+          <li><span class="check">✔</span> Tour listing edits</li>
+        </ul>
+
+        <a class="btn primary" href="#contact">Choose Standard</a>
+      </div>
+
+      <!-- PREMIUM -->
+      <div class="card reveal">
+        <span class="chip">🔥 Package 03 — Premium</span>
+        <div class="price">Rs. 85,000 <small>/ 1 Month</small></div>
+        <p>Advanced optimization focused on maximum bookings.</p>
+
+        <ul class="features">
+          <li><span class="check">✔</span> Everything in Standard</li>
+          <li><span class="check">✔</span> Tour listing setup (up to 6)</li>
+          <li><span class="check">✔</span> SEO descriptions + itinerary formatting</li>
+          <li><span class="check">✔</span> FAQ + policies setup</li>
+          <li><span class="check">✔</span> 1 month premium management</li>
+        </ul>
+
+        <div class="chip" style="margin-top:10px;">Premium Management Includes</div>
+        <ul class="features">
+          <li><span class="check">✔</span> Fast inbox replies</li>
+          <li><span class="check">✔</span> Review replies + reputation support</li>
+          <li><span class="check">✔</span> Weekly performance check</li>
+          <li><span class="check">✔</span> Profile improvements & troubleshooting</li>
+          <li><span class="check">✔</span> Strong booking-focused optimization</li>
+        </ul>
+
+        <a class="btn primary" href="#contact">Choose Premium</a>
+      </div>
+
+    </div>
+
+    <!-- Custom Package -->
+    <div style="margin-top:20px" class="card reveal">
+      <div class="chip">Custom Package</div>
+      <h3 style="margin-top:10px">Need something different?</h3>
+      <p>
+        If you need longer management (3 months / 6 months) or only specific platform setup,
+        contact us for a custom quotation.
+      </p>
+
+      <div style="display:flex; gap:10px; flex-wrap:wrap; margin-top:12px">
+        <a class="btn primary"
+           href="https://wa.me/94743252376?text=Hello%20Uptome!%20I%20need%20a%20custom%20tourism%20management%20package."
+           target="_blank">
+           WhatsApp for Custom Quote
+        </a>
+        <a class="btn"
+           href="mailto:uptome.hire@gmail.com?subject=Custom%20Tourism%20Package%20Request">
+           Email Request
+        </a>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+
+  <!-- Work -->
+  <section id="work">
+    <div class="container">
+      <div class="sectionHead">
+        <div>
+          <div class="kicker"><span class="line"></span> Portfolio</div>
+          <h2>Recent work & customer projects</h2>
+          <p class="sub">
+            A few example designs and campaign creatives. Click any item to view details.
+          </p>
+        </div>
+      </div>
+
+      <div class="workToolbar">
+        <div class="filters" role="tablist" aria-label="Work filters">
+          <button class="filterBtn active" data-filter="all">All</button>
+          <button class="filterBtn" data-filter="social">Social Posts</button>
+          <button class="filterBtn" data-filter="ads">Ad Creatives</button>
+          <button class="filterBtn" data-filter="tourism">Tourism</button>
+          <button class="filterBtn" data-filter="branding">Branding</button>
+        </div>
+
+        <!-- <div class="search" role="search">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+            <path d="M21 21l-4.3-4.3M10.5 18a7.5 7.5 0 1 1 0-15 7.5 7.5 0 0 1 0 15Z" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+          </svg>
+          <input id="workSearch" placeholder="Search: tourism, social media, offer, website..." />
+        </div> -->
+      </div>
+
+      <!-- IMPORTANT:
+        Replace these images with your actual posts in /assets/.
+        I mapped them to your uploaded examples style.
+      -->
+      <div class="gallery" id="gallery">
+        <article class="workItem reveal" data-cat="branding" data-title="Uptome Brand Logo" data-desc="Brand identity and logo usage for consistent look across posts." data-img="assets/uptome-logo-full.jpg">
+          <span class="tag">Branding</span>
+          <img src="assets/work1.jpeg" alt="Uptome branding work">
+          <div class="cap"><b>Ovin Lanka Tours</b><span>Tourism + Branding</span></div>
+        </article>
+
+        
+
+        <article class="workItem reveal" data-cat="tourism" data-title="Tripadvisor / Tourism Promo" data-desc="Tourism marketing creative focused on review growth and trust." data-img="assets/work-2.jpg">
+          <span class="tag">Branding</span>
+          <img src="assets/work2.jpeg" alt="Uptome tourism work">
+          <div class="cap"><b>Lanka Adeventure Explores</b><span>Branding</span></div>
+        </article>
+
+        <article class="workItem reveal" data-cat="ads" data-title="Creative Business Solutions" data-desc="Hero creative for agency promo—clean layout, bold headline, CTA." data-img="assets/work-1.jpg">
+          <span class="tag">Tourism</span>
+          <img src="assets/work3.jpeg" alt="Uptome ad creative work">
+          <div class="cap"><b>Chathuranga Jeep Safari</b><span>Tourism + Branding</span></div>
+        </article>
+
+
+          <article class="workItem reveal" data-cat="social" data-title="Social Media Marketing Post" data-desc="Bold typography and relatable visuals designed to increase engagement." data-img="assets/work-4.jpg">
+          <span class="tag">Branding</span>
+          <img src="assets/work4.jpeg" alt="Uptome social marketing post">
+          <div class="cap"><b>Habarana Bed & Breakfast</b><span>Branding</span></div>
+        </article>
+
+        <article class="workItem reveal" data-cat="ads" data-title="Business Content + Services" data-desc="Multi-service promotional layout with icons and info blocks." data-img="assets/work-3.jpg">
+          <span class="tag">Ads</span>
+          <img src="assets/work5.jpeg" alt="Uptome services post">
+          <div class="cap"><b>Ecotusker Tours & Jepp Safari</b><span>Tourism + Branding</span></div>
+        </article>
+
+      
+
+        <article class="workItem reveal" data-cat="social" data-title="Special Offer Campaign" data-desc="Offer creative with strong contrast, clear pricing and CTA." data-img="assets/work-5.jpg">
+          <span class="tag">Tourism</span>
+          <img src="assets/work6.jpeg" alt="Uptome offer campaign">
+          <div class="cap"><b>Wilpattu Safari Jeeps</b><span>Tourism + Branding</span></div>
+        </article>
+
+        <article class="workItem reveal" data-cat="social" data-title="We Make Your Brand Go Viral" data-desc="High impact dark theme creative with viral message style." data-img="assets/work-6.jpg">
+          <span class="tag">Tourism</span>
+          <img src="assets/work7.jpeg" alt="Uptome viral post">
+          <div class="cap"><b>Divine Tours</b><span>Tourism + Branding</span></div>
+        </article>
+
+        <article class="workItem reveal" data-cat="branding" data-title="Modern Agency Poster" data-desc="Clean professional layout for digital marketing service promo." data-img="assets/work-7.jpg">
+          <span class="tag">Branding</span>
+          <img src="assets/work8.jpeg" alt="Uptome agency poster">
+          <div class="cap"><b>Novah Travels</b><span>Branding</span></div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- Skills -->
+  <section id="skills">
+    <div class="container">
+      <div class="sectionHead">
+        <div>
+          <div class="kicker"><span class="line"></span> Skills</div>
+          <h2>What we’re best at</h2>
+          <p class="sub">A snapshot of our key marketing & creative strengths.</p>
+        </div>
+      </div>
+
+      <div class="skillsGrid">
+        <div class="card reveal">
+          <h3>Core Skills</h3>
+
+          <div style="margin-top:14px">
+            <div class="skillRow"><b>Creative Design</b><span>95%</span></div>
+            <div class="bar"><div class="fill" data-fill="95%"></div></div>
+          </div>
+
+          <div style="margin-top:14px">
+            <div class="skillRow"><b>Social Media Strategy</b><span>90%</span></div>
+            <div class="bar"><div class="fill" data-fill="90%"></div></div>
+          </div>
+
+          <div style="margin-top:14px">
+            <div class="skillRow"><b>Meta Ads (IG/FB)</b><span>88%</span></div>
+            <div class="bar"><div class="fill" data-fill="88%"></div></div>
+          </div>
+
+          <div style="margin-top:14px">
+            <div class="skillRow"><b>Content Planning</b><span>92%</span></div>
+            <div class="bar"><div class="fill" data-fill="92%"></div></div>
+          </div>
+
+          <div style="margin-top:14px">
+            <div class="skillRow"><b>Reporting & Analytics</b><span>85%</span></div>
+            <div class="bar"><div class="fill" data-fill="85%"></div></div>
+          </div>
+        </div>
+
+        <div class="card reveal">
+          <div class="chip">Tools & Platforms</div>
+          <h3 style="margin-top:10px">We work with</h3>
+          <p>Facebook / Instagram, Meta Ads Manager, Canva / Adobe tools, Google tools, analytics dashboards.</p>
+
+          <div style="display:grid; gap:10px; margin-top:14px">
+            <div class="contactItem">
+              <div class="iconBox" style="width:44px;height:44px;border-radius:16px">
+                <svg viewBox="0 0 24 24" fill="none">
+                  <path d="M4 12a8 8 0 1 0 16 0 8 8 0 0 0-16 0Z" stroke="currentColor" stroke-width="2"/>
+                  <path d="M8 12h8" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                  <path d="M12 8v8" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                </svg>
+              </div>
+              <div>
+                <b>Campaign Setup & Optimization</b>
+                <span>Audience targeting • A/B testing • Better cost results</span>
+              </div>
+            </div>
+
+            <div class="contactItem">
+              <div class="iconBox" style="width:44px;height:44px;border-radius:16px">
+                <svg viewBox="0 0 24 24" fill="none">
+                  <path d="M6 8h12M6 12h12M6 16h12" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                </svg>
+              </div>
+              <div>
+                <b>Design Systems</b>
+                <span>Consistent templates that match your brand style</span>
+              </div>
+            </div>
+
+            <div class="contactItem">
+              <div class="iconBox" style="width:44px;height:44px;border-radius:16px">
+                <svg viewBox="0 0 24 24" fill="none">
+                  <path d="M4 19h16M6 15l4-4 3 3 5-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </div>
+              <div>
+                <b>Reporting</b>
+                <span>Monthly insights • What worked • Next improvements</span>
+              </div>
+            </div>
+          </div>
+
+          <div style="margin-top:14px; display:flex; gap:10px; flex-wrap:wrap">
+            <a class="btn primary" href="#contact">Work With Us</a>
+            <a class="btn" href="#packages">See Packages</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact -->
+  <section id="contact">
+    <div class="container">
+      <div class="sectionHead">
+        <div>
+          <div class="kicker"><span class="line"></span> Contact</div>
+          <h2>Let’s grow your business</h2>
+          <p class="sub">Message us directly on WhatsApp or send an email. We reply fast.</p>
+        </div>
+      </div>
+
+      <div class="contactGrid">
+        <div class="card reveal">
+          <h3>Direct contact</h3>
+
+          <div class="contactItem" style="margin-top:12px">
+            <div class="iconBox" style="width:44px;height:44px;border-radius:16px">
+              <svg viewBox="0 0 24 24" fill="none">
+                <path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.8.3 1.6.6 2.3a2 2 0 0 1-.4 2.1L8.2 9.2a16 16 0 0 0 6.6 6.6l1.1-1.1a2 2 0 0 1 2.1-.4c.7.3 1.5.5 2.3.6a2 2 0 0 1 1.7 2Z" stroke="currentColor" stroke-width="2"/>
+              </svg>
+            </div>
+            <div>
+              <b>WhatsApp / Phone</b>
+              <span><a href="https://wa.me/94743252376" target="_blank" rel="noopener">+94 74 3252 376</a></span>
+            </div>
+            <button class="btn icon" data-copy="+94743252376" aria-label="Copy number">
+              <svg viewBox="0 0 24 24" fill="none">
+                <path d="M9 9h10v10H9z" stroke="currentColor" stroke-width="2"/>
+                <path d="M5 15H4a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h10a1 1 0 0 1 1 1v1" stroke="currentColor" stroke-width="2"/>
+              </svg>
+            </button>
+          </div>
+
+          <div class="contactItem" style="margin-top:10px">
+            <div class="iconBox" style="width:44px;height:44px;border-radius:16px">
+              <svg viewBox="0 0 24 24" fill="none">
+                <path d="M4 4h16v16H4z" stroke="currentColor" stroke-width="2"/>
+                <path d="M4 6l8 7 8-7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </div>
+            <div>
+              <b>Email</b>
+              <span><a href="mailto:uptome.hire@gmail.com">uptome.hire@gmail.com</a></span>
+            </div>
+            <button class="btn icon" data-copy="uptome.hire@gmail.com" aria-label="Copy email">
+              <svg viewBox="0 0 24 24" fill="none">
+                <path d="M9 9h10v10H9z" stroke="currentColor" stroke-width="2"/>
+                <path d="M5 15H4a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h10a1 1 0 0 1 1 1v1" stroke="currentColor" stroke-width="2"/>
+              </svg>
+            </button>
+          </div>
+
+          <p class="note" style="margin-top:12px">
+            Tip: If you want faster help, message us on WhatsApp with your business type + goal (leads / sales / bookings).
+          </p>
+
+          <div style="display:flex; gap:10px; flex-wrap:wrap; margin-top:12px">
+            <a class="btn primary" href="https://wa.me/94743252376?text=Hello%20Uptome!%20I%20want%20a%20marketing%20package%20for%20my%20business." target="_blank" rel="noopener">WhatsApp Now</a>
+            <a class="btn" href="#packages">Packages</a>
+          </div>
+        </div>
+
+        <div class="card reveal">
+          <h3>Send a message</h3>
+          <p style="margin-top:6px">This form opens your email app with the message (no server needed).</p>
+
+          <form class="form" id="contactForm">
+            <input class="field" id="name" placeholder="Your name" required />
+            <input class="field" id="business" placeholder="Business name / industry" required />
+            <input class="field" id="email" type="email" placeholder="Your email" required />
+            <textarea class="field" id="message" placeholder="What do you need? (ads, content, full package, tourism reviews...)" required></textarea>
+
+            <button class="btn primary" type="submit">Send Email</button>
+            <div class="note">
+              Or contact directly: <a href="mailto:uptome.hire@gmail.com">uptome.hire@gmail.com</a> •
+              <a href="https://wa.me/94743252376" target="_blank" rel="noopener">WhatsApp</a>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="container">
+      <div class="footerRow">
+        <div>© <span id="year"></span> <b>UPTOME</b> — Marketing & Advertising Agency</div>
+        <div style="display:flex; gap:10px; flex-wrap:wrap">
+          <a class="btn" href="#home">Back to top</a>
+          <a class="btn primary" href="https://wa.me/94743252376?text=Hello%20Uptome!%20I%20need%20marketing%20support." target="_blank" rel="noopener">WhatsApp</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Modal -->
+  <div class="modal" id="modal" aria-hidden="true">
+    <div class="modalClose" id="modalClose" aria-label="Close preview">
+      <svg viewBox="0 0 24 24" fill="none">
+        <path d="M6 6l12 12M18 6L6 18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+      </svg>
+    </div>
+    <div class="modalCard" role="dialog" aria-modal="true" aria-label="Work preview">
+      <div class="modalMedia"><img id="modalImg" alt="Work preview"/></div>
+      <div class="modalInfo">
+        <span class="chip" id="modalTag">Work</span>
+        <h3 id="modalTitle">Title</h3>
+        <p id="modalDesc">Description</p>
+        <div style="display:flex; gap:10px; flex-wrap:wrap; margin-top:auto">
+          <a class="btn primary" href="#contact" id="modalCTA">Request Similar Design</a>
+          <button class="btn" id="modalCopy">Copy Title</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="toast" id="toast">Copied!</div>
+
+  <script>
+    // =========================
+    // CONFIG (edit if needed)
+    // =========================
+    const AGENCY_EMAIL = "uptome.hire@gmail.com";
+    const WHATSAPP_NUMBER = "94743252376"; // no +, no spaces
+
+    // =========================
+    // Mobile Drawer
+    // =========================
+    const body = document.body;
+    const openDrawerBtn = document.getElementById("openDrawer");
+    const closeDrawerBtn = document.getElementById("closeDrawer");
+    const drawerOverlay = document.getElementById("drawerOverlay");
+
+    function openDrawer(){
+      body.classList.add("drawerOpen");
+      document.getElementById("drawer").setAttribute("aria-hidden","false");
+      drawerOverlay.setAttribute("aria-hidden","false");
+    }
+    function closeDrawer(){
+      body.classList.remove("drawerOpen");
+      document.getElementById("drawer").setAttribute("aria-hidden","true");
+      drawerOverlay.setAttribute("aria-hidden","true");
+    }
+
+    openDrawerBtn?.addEventListener("click", openDrawer);
+    closeDrawerBtn?.addEventListener("click", closeDrawer);
+    drawerOverlay?.addEventListener("click", closeDrawer);
+
+    document.querySelectorAll(".drawerLink").forEach(a=>{
+      a.addEventListener("click", ()=> closeDrawer());
+    });
+
+    // =========================
+    // Active nav link on scroll
+    // =========================
+    const navLinks = Array.from(document.querySelectorAll(".navlinks a"));
+    const sections = navLinks.map(a => document.querySelector(a.getAttribute("href"))).filter(Boolean);
+
+    const spy = new IntersectionObserver((entries)=>{
+      entries.forEach(entry=>{
+        if(entry.isIntersecting){
+          const id = "#" + entry.target.id;
+          navLinks.forEach(a=>{
+            a.classList.toggle("active", a.getAttribute("href") === id);
+          });
+        }
+      });
+    }, {rootMargin: "-55% 0px -40% 0px", threshold: 0.01});
+
+    sections.forEach(sec => spy.observe(sec));
+
+    // =========================
+    // Reveal animations
+    // =========================
+    const revealObserver = new IntersectionObserver((entries)=>{
+      entries.forEach(e=>{
+        if(e.isIntersecting){
+          e.target.classList.add("show");
+          revealObserver.unobserve(e.target);
+        }
+      });
+    }, {threshold: 0.12});
+
+    document.querySelectorAll(".reveal").forEach(el => revealObserver.observe(el));
+
+    // =========================
+    // Pricing toggle (One-time / Monthly)
+    // =========================
+    const billingSwitch = document.getElementById("billingSwitch");
+    const billingLabel = document.getElementById("billingLabel");
+    let monthly = false;
+
+    function updatePrices(){
+      document.querySelectorAll(".price").forEach(p=>{
+        const one = p.getAttribute("data-onetime");
+        const mon = p.getAttribute("data-monthly");
+      if(one && mon){
+  p.innerHTML = (monthly ? mon : one) + ` <small>/ ${monthly ? "month" : "one-time"}</small>`;
+}
+
+      });
+      billingLabel.textContent = monthly ? "Monthly" : "One-Time";
+      billingSwitch.classList.toggle("on", monthly);
+      billingSwitch.setAttribute("aria-checked", monthly ? "true" : "false");
+    }
+
+    function toggleBilling(){
+      monthly = !monthly;
+      updatePrices();
+    }
+
+    billingSwitch?.addEventListener("click", toggleBilling);
+    billingSwitch?.addEventListener("keydown", (e)=>{
+      if(e.key === "Enter" || e.key === " "){
+        e.preventDefault();
+        toggleBilling();
+      }
+    });
+    updatePrices();
+
+    // =========================
+    // Work filters + search
+    // =========================
+    const filterBtns = document.querySelectorAll(".filterBtn");
+    const workItems = Array.from(document.querySelectorAll(".workItem"));
+    const searchInput = document.getElementById("workSearch");
+
+    let activeFilter = "all";
+    let searchTerm = "";
+
+    function applyWorkFilters(){
+      workItems.forEach(item=>{
+        const cat = item.getAttribute("data-cat");
+        const title = (item.getAttribute("data-title") || "").toLowerCase();
+        const desc = (item.getAttribute("data-desc") || "").toLowerCase();
+        const matchesFilter = (activeFilter === "all") || (cat === activeFilter);
+        const matchesSearch = !searchTerm || title.includes(searchTerm) || desc.includes(searchTerm) || cat.includes(searchTerm);
+        item.style.display = (matchesFilter && matchesSearch) ? "" : "none";
+      });
+    }
+
+    filterBtns.forEach(btn=>{
+      btn.addEventListener("click", ()=>{
+        filterBtns.forEach(b=>b.classList.remove("active"));
+        btn.classList.add("active");
+        activeFilter = btn.getAttribute("data-filter");
+        applyWorkFilters();
+      });
+    });
+
+    searchInput?.addEventListener("input", (e)=>{
+      searchTerm = e.target.value.trim().toLowerCase();
+      applyWorkFilters();
+    });
+
+    // =========================
+    // Modal preview
+    // =========================
+    const modal = document.getElementById("modal");
+    const modalClose = document.getElementById("modalClose");
+    const modalImg = document.getElementById("modalImg");
+    const modalTitle = document.getElementById("modalTitle");
+    const modalDesc = document.getElementById("modalDesc");
+    const modalTag = document.getElementById("modalTag");
+    const modalCopy = document.getElementById("modalCopy");
+
+    function openModal({img, title, desc, tag}){
+      modalImg.src = img;
+      modalTitle.textContent = title;
+      modalDesc.textContent = desc;
+      modalTag.textContent = tag;
+      modal.classList.add("open");
+      modal.setAttribute("aria-hidden","false");
+    }
+    function closeModal(){
+      modal.classList.remove("open");
+      modal.setAttribute("aria-hidden","true");
+    }
+
+    workItems.forEach(item=>{
+      item.addEventListener("click", ()=>{
+        openModal({
+          img: item.getAttribute("data-img") || item.querySelector("img")?.src,
+          title: item.getAttribute("data-title") || "Project",
+          desc: item.getAttribute("data-desc") || "Project details",
+          tag: (item.getAttribute("data-cat") || "work").toUpperCase()
+        });
+      });
+    });
+
+    modalClose?.addEventListener("click", closeModal);
+    modal?.addEventListener("click", (e)=>{
+      if(e.target === modal) closeModal();
+    });
+    document.addEventListener("keydown", (e)=>{
+      if(e.key === "Escape") closeModal();
+    });
+
+    // =========================
+    // Copy to clipboard + toast
+    // =========================
+    const toast = document.getElementById("toast");
+    let toastTimer;
+
+    function showToast(text="Copied!"){
+      toast.textContent = text;
+      toast.classList.add("show");
+      clearTimeout(toastTimer);
+      toastTimer = setTimeout(()=> toast.classList.remove("show"), 1400);
+    }
+
+    async function copyText(text){
+      try{
+        await navigator.clipboard.writeText(text);
+        showToast("Copied!");
+      }catch{
+        showToast("Copy not supported");
+      }
+    }
+
+    document.querySelectorAll("[data-copy]").forEach(btn=>{
+      btn.addEventListener("click", ()=> copyText(btn.getAttribute("data-copy")));
+    });
+
+    modalCopy?.addEventListener("click", ()=> copyText(modalTitle.textContent));
+
+    // =========================
+    // Contact form -> mailto
+    // =========================
+    const form = document.getElementById("contactForm");
+    form?.addEventListener("submit", (e)=>{
+      e.preventDefault();
+
+      const name = document.getElementById("name").value.trim();
+      const business = document.getElementById("business").value.trim();
+      const email = document.getElementById("email").value.trim();
+      const message = document.getElementById("message").value.trim();
+
+      if(!name || !business || !email || !message){
+        showToast("Please fill all fields");
+        return;
+      }
+
+      const subject = encodeURIComponent(`Marketing Request — ${business}`);
+      const body = encodeURIComponent(
+        `Name: ${name}\nBusiness: ${business}\nEmail: ${email}\n\nMessage:\n${message}\n\n— Sent from Uptome Portfolio Website`
+      );
+
+      window.location.href = `mailto:${AGENCY_EMAIL}?subject=${subject}&body=${body}`;
+    });
+
+    // =========================
+    // Skill bars animate when visible
+    // =========================
+    const fills = document.querySelectorAll(".fill");
+    const skillObserver = new IntersectionObserver((entries)=>{
+      entries.forEach(e=>{
+        if(e.isIntersecting){
+          const el = e.target;
+          el.style.width = el.getAttribute("data-fill") || "80%";
+          skillObserver.unobserve(el);
+        }
+      });
+    }, {threshold: 0.35});
+    fills.forEach(f => skillObserver.observe(f));
+
+    // Year
+    document.getElementById("year").textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
